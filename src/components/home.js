@@ -59,18 +59,18 @@ export class AppHome extends HTMLElement {
             src="assets/images/photos/home.jpg"
             class="max-w-sm rounded-lg shadow-2xl"
             width="300"
+            alt="Foto de perfil do Gabriel Panta"
           />
           <div>
-            <h1 class="text-2xl font-bold text-center md:text-left">Gabriel Panta,<br>full-stack web developer</h1>
-            <p data-i18n="p.content" class="py-6 text-center md:text-left">
-              Web developer pós-graduando em Front-end Engineering e em especialização em Gestão de Sistemas de Informação. 
-              Atuo no desenvolvimento de aplicações web modernas e escaláveis, unindo base técnica sólida, visão de negócio e 
-              experiência prévia em áreas analíticas para criar soluções que aumentam a eficiência das organizações e 
-              elevam a experiência dos utilizadores.
-            </p>
+            <h1 class="text-2xl font-bold text-center md:text-left">
+              Gabriel Panta,<br>full-stack web developer
+            </h1>
+            <p data-i18n="p.content" class="py-6 text-center md:text-left"></p>
             <div class="flex flex-row justify-center md:justify-start items-center gap-4">
-              <button data-route="curriculum" data-i18n="btn.curriculo" class="btn btn-primary">Ver Currículo</button>
-              <button data-route="portfolio" data-i18n="btn.portfolio" class="btn btn-neutral">Ver Portfólio</button>
+              <button data-route="curriculum" data-i18n="btn.curriculo" class="btn btn-primary">
+              </button>
+              <button data-route="portfolio" data-i18n="btn.portfolio" class="btn btn-neutral">
+              </button>
             </div>
           </div>
         </div>

@@ -13,7 +13,6 @@ export class AppHeader extends HTMLElement {
 
   constructor() {
     super();
-    this.isMenuOpen = false;
   }
 
   connectedCallback() {
