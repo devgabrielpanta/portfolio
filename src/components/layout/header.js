@@ -75,7 +75,7 @@ export class AppHeader extends HTMLElement {
           </header>
 
           <!-- Grid do conteúdo -->
-          <main id="main" class="flex w-full h-full max-h-screen overflow-hidden bg-base-300">
+          <main id="main" class="flex flex-col w-full h-full md:h-screen md:max-h-screen overflow-y-hidden bg-base-300">
           </main>
 
         </div>

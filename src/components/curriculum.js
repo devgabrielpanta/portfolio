@@ -189,30 +189,43 @@ export class AppCurriculum extends HTMLElement {
 
   render() {
     this.innerHTML = /* html */ `
-      <section id="curriculum"
-        class="grid grid-cols-1 grid-rows-[1fr] gap-y-2 min-h-0 max-h-screen overflow-hidden p-8">
-
-        <div class="grid grid-cols-1 md:grid-cols-2 min-h-0 p-6 rounded-lg bg-base-100 space-y-10">
-
+      <section
+        id="curriculum"
+        class="
+          flex flex-col
+          md:grid md:grid-cols-2
+          min-h-[90vh]
+          md:h-[90vh] md:min-h-0
+          gap-10 m-8 p-6
+          bg-base-100 rounded-lg
+        "
+      >
           <!-- Coluna esquerda -->
           <div class="flex flex-col items-center justify-center w-full h-full">
             <picture>
               <img
-                src="assets/images/photos/profile-mobile.png"
-                alt="Foto de perfil do Gabriel Panta"
+                src="assets/images/photos/curriculum.png"
+                alt="Gabriel Panta "
                 width="400"
               />
               <figcaption class="text-center text-lg font-semibold italic">
-                Gabriel Panta, full-stack web developer.
+                Gabriel Panta, full-stack web developer
               </figcaption>
             </picture>
           </div>
 
           <!-- Coluna direita -->
-          <div class="max-h-full min-h-0 overflow-y-auto pr-4">
-
+          <div
+            class="
+              flex flex-col
+              min-h-0
+              md:h-full
+              md:overflow-y-auto
+              pr-4
+            "
+          >
             <!-- Educação -->
-            <section class="space-y-4 mb-8">
+            <div class="space-y-4 mb-8">
               <h3 data-i18n="education.title" class="text-lg font-semibold" ></h3>
 
               <div
@@ -223,21 +236,20 @@ export class AppCurriculum extends HTMLElement {
                 <span data-i18n="education.headers.location"></span>
               </div>
 
-              <div id="education-list"></div>
-            </section>
+              <div id="education-list" class="space-y-4"></div>
+            </div>
 
             <!-- Experiência -->
-            <section class="min-h-0 overflow-y-auto pr-2">
+            <div class="flex flex-col pr-2">
               <h3 data-i18n="experience.title" class="text-lg font-semibold"></h3>
               <hr />
               
-              <ul id="experience-list" class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+              <ul id="experience-list" class="timeline timeline-vertical timeline-compact">
               </ul>
-            </section>
+            </div>
 
           </div>
-        </div>
-      </section>
+        </section>
     `;
   }
 
@@ -303,7 +315,7 @@ export class AppCurriculum extends HTMLElement {
       this.experienceItems = data.map((_, index) => {
         const li = document.createElement("li");
 
-        // HR superior (exceto primeiro item)
+        // HR superior (exceto primeiro)
         if (index !== 0) {
           li.appendChild(document.createElement("hr"));
         }
@@ -322,26 +334,24 @@ export class AppCurriculum extends HTMLElement {
       `;
         li.appendChild(middle);
 
-        // Conteúdo
+        // Conteúdo (estrutura IGUAL ao DaisyUI)
         const content = document.createElement("div");
         content.className =
           index % 2 === 0
-            ? "timeline-start mb-10 md:text-end"
-            : "timeline-end md:mb-10";
+            ? "timeline-end timeline-box md:timeline-start mb-10 md:text-end"
+            : "timeline-end timeline-box md:mb-10";
 
         const time = document.createElement("time");
-        time.className = "period font-mono italic";
+        time.className = "font-mono italic";
 
         const role = document.createElement("div");
-        role.className = "role text-lg font-black";
+        role.className = "text-lg font-black";
 
-        const desc = document.createElement("div");
-        desc.className = "description";
-
-        content.append(time, role, desc);
+        // ⚠️ description NÃO tem wrapper
+        content.append(time, role);
         li.appendChild(content);
 
-        // HR inferior (exceto último item)
+        // HR inferior (exceto último)
         if (index !== data.length - 1) {
           li.appendChild(document.createElement("hr"));
         }
@@ -351,11 +361,20 @@ export class AppCurriculum extends HTMLElement {
       });
     }
 
+    // Preenche via data-attributes
     data.forEach((item, index) => {
-      const el = this.experienceItems[index];
-      el.querySelector(".period").textContent = item.period;
-      el.querySelector(".role").textContent = item.role;
-      el.querySelector(".description").textContent = item.description;
+      const li = this.experienceItems[index];
+      const content = li.querySelector(".timeline-start, .timeline-end");
+
+      li.dataset.period = item.period;
+      li.dataset.role = item.role;
+      li.dataset.description = item.description;
+
+      content.querySelector("time").textContent = item.period;
+      content.querySelector(".text-lg").textContent = item.role;
+
+      // description como texto direto (DaisyUI-friendly)
+      content.append(document.createTextNode(item.description));
     });
   }
 }
