@@ -1,10 +1,12 @@
 import { AppHome } from "./components/home.js";
 import { AppCurriculum } from "./components/curriculum.js";
 import { AppPortfolio } from "./components/portfolio.js";
+import { AppContacto } from "./components/contacto.js";
 
 customElements.define("app-home", AppHome);
 customElements.define("app-curriculum", AppCurriculum);
 customElements.define("app-portfolio", AppPortfolio);
+customElements.define("app-contacto", AppContacto);
 
 export class AppRouter extends HTMLElement {
   route = "home";
@@ -62,6 +64,9 @@ export class AppRouter extends HTMLElement {
         break;
       case "portfolio":
         content = "<app-portfolio></app-portfolio>";
+        break;
+      case "contactos":
+        content = "<app-contacto></app-contacto>";
         break;
       default:
         content = "<app-home></app-home>";
