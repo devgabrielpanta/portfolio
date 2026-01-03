@@ -56,10 +56,12 @@ export class AppHome extends HTMLElement {
       <div class="hero bg-base-300 min-h-screen w-full md:w-[800px] m-auto">
         <div class="hero-content flex-col lg:flex-row">
           <img
-            src="assets/images/photos/home.jpg"
+            src="assets/images/photos/home.png"
             class="max-w-sm rounded-lg shadow-2xl"
             width="300"
             alt="Foto de perfil do Gabriel Panta"
+            fetchpriority="high"
+            loading="eager"
           />
           <div>
             <h1 class="text-2xl font-bold text-center md:text-left">

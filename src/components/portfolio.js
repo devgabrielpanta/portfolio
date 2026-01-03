@@ -141,7 +141,7 @@ export class AppPortfolio extends HTMLElement {
       const key = el.dataset.i18n;
       el.textContent = dict[key] ?? "";
     });
-    
+
     const data = this.portfolioContent[this.locale];
 
     if (!this.portfolioItems) {

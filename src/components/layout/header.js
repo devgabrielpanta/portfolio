@@ -11,10 +11,6 @@ export class AppHeader extends HTMLElement {
   isMenuOpen = false;
   provider;
 
-  constructor() {
-    super();
-  }
-
   connectedCallback() {
     this.render();
     this.cacheElements();
