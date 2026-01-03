@@ -1,11 +1,11 @@
 export class AppProvider extends HTMLElement {
   locale = "pt";
-  route = "contactos";
+  route = "home";
   subscribers = new Set();
 
   connectedCallback() {
     this.locale = "pt";
-    this.route = "contactos";
+    this.route = "home";
   }
 
   setLocale(locale) {

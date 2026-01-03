@@ -6,9 +6,6 @@ export class AppContacto extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    // this.cacheNodes();
-    // this.updateTexts();
-
     this.provider = this.closest("app-provider");
     this.provider?.subscribe(this);
   }
@@ -19,7 +16,6 @@ export class AppContacto extends HTMLElement {
 
   onLocaleChange(locale) {
     this.locale = locale;
-    // this.updateTexts();
   }
 
   /* ---------------- RENDER ESTÁTICO ---------------- */
