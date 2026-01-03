@@ -2,10 +2,21 @@ export class AppContacto extends HTMLElement {
   locale = "pt";
   provider;
 
+  translations = {
+    pt: {
+      title: "Contactos",
+    },
+    en: {
+      title: "Contacts",
+    },
+  };
+
   /* ---------------- CALLBACKS E EVENTOS ---------------- */
 
   connectedCallback() {
     this.render();
+    this.cacheNodes();
+    this.updateTexts();
     this.provider = this.closest("app-provider");
     this.provider?.subscribe(this);
   }
@@ -16,6 +27,7 @@ export class AppContacto extends HTMLElement {
 
   onLocaleChange(locale) {
     this.locale = locale;
+    this.updateTexts();
   }
 
   /* ---------------- RENDER ESTÁTICO ---------------- */
@@ -39,8 +51,7 @@ export class AppContacto extends HTMLElement {
                   alt="Gabriel Panta no telefone sorrindo para o lado"
                   width="400"
                 />
-                <figcaption class="text-center text-lg font-semibold italic">
-                  Gabriel Panta, full-stack web developer
+                <figcaption data-i18n="title" class="text-center text-lg font-semibold italic">
                 </figcaption>
               </picture>
             </div>
@@ -56,7 +67,7 @@ export class AppContacto extends HTMLElement {
                 pr-4
               "
             >
-                <ul class="list bg-base-200 rounded-box shadow-md">
+                <ul class="list items-center md:items-start bg-base-200 rounded-box shadow-md">
                     <!-- Contact Info -->
                     <li class="list-row items-center">
                         <div><img class="size-6 rounded-box bg-white" src="assets/images/icons/whatsapp.svg" /></div>
@@ -100,5 +111,22 @@ export class AppContacto extends HTMLElement {
             </div>
         </section>
     `;
+  }
+
+  /* ---------------- CACHE ---------------- */
+
+  cacheNodes() {
+    this.i18nNodes = this.querySelectorAll("[data-i18n]");
+  }
+
+  /* ---------------- UPDATE DOS TEXTOS ------------ */
+
+  updateTexts() {
+    const dict = this.translations[this.locale];
+
+    this.i18nNodes.forEach((el) => {
+      const key = el.dataset.i18n;
+      el.textContent = dict[key] ?? "";
+    });
   }
 }

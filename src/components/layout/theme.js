@@ -1,10 +1,6 @@
 export class AppTheme extends HTMLElement {
   theme = "light";
-
-  constructor() {
-    super();
-    this.theme = "light";
-  }
+  provider;
 
   connectedCallback() {
     this.render();
@@ -17,15 +13,21 @@ export class AppTheme extends HTMLElement {
     this.sunIcon = this.querySelector("#sun-icon");
     this.moonIcon = this.querySelector("#moon-icon");
     this.html = document.documentElement;
+    this.provider = this.closest("app-provider");
+    this.provider?.subscribe(this);
+  }
+
+  disconnectedCallback() {
+    this.provider?.unsubscribe(this);
   }
 
   bindEvents() {
     this.toggleButton.addEventListener("change", () => {
-      this.setTheme(this.toggleButton.checked ? "dark" : "light");
+      this.provider.setTheme(this.toggleButton.checked ? "dark" : "light");
     });
   }
 
-  setTheme(theme) {
+  onThemeChange(theme) {
     this.theme = theme;
     this.html.setAttribute("data-theme", theme);
 
@@ -36,7 +38,7 @@ export class AppTheme extends HTMLElement {
 
   render() {
     this.innerHTML = /* html */ `
-     <label class="swap swap-rotate bg-base-200 p-2 rounded-lg ">
+     <label class="swap swap-rotate bg-base-300 p-2 rounded-lg ">
 
         <!-- this hidden checkbox controls the state -->
         <input id="theme-toggle" type="checkbox" class="theme-controller" value="synthwave" />

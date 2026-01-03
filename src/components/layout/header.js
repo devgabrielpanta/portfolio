@@ -29,11 +29,26 @@ export class AppHeader extends HTMLElement {
 
   cacheElements() {
     this.drawerToggle = this.querySelector("#my-drawer-3");
+    this.logotipo = this.querySelectorAll("[img-logo]");
   }
 
   onRouteChange(route) {
     this.route = route;
     this.closeDrawer();
+  }
+
+  onLocaleChange(locale) {
+    this.closeDrawer();
+  }
+
+  onThemeChange(theme) {
+    this.logotipo.forEach((logo) => {
+      if (theme === "dark" || theme === "synthwave") {
+        logo.src = "assets/images/logotipos/gabrielpanta-white.svg";
+      } else {
+        logo.src = "assets/images/logotipos/gabrielpanta-dark.svg";
+      }
+    });
   }
 
   closeDrawer() {
@@ -69,8 +84,8 @@ export class AppHeader extends HTMLElement {
                 </svg>
               </label>
             </div>
-            <div class="flex-1">
-              <span class="text-lg font-bold">My SaaS</span>
+            <div class="flex-1 ml-2">
+              <img img-logo src="assets/images/logotipos/gabrielpanta-dark.svg" alt="Logo" class="h-10 w-auto" />
             </div>
           </header>
 
@@ -83,9 +98,9 @@ export class AppHeader extends HTMLElement {
         <!-- Sidebar -->
         <div class="drawer-side">
           <label for="my-drawer-3" class="drawer-overlay"></label>
-          <aside class="grid grid-cols-1 grid-rows-[40px_1fr_40px] bg-neutral w-60 min-h-full p-4">
-            <div class="flex-1">
-              <span class="text-lg font-bold">My SaaS</span>
+          <aside class="grid grid-cols-1 grid-rows-[40px_1fr_40px] bg-base-100 w-60 min-h-full p-4 border-r border-base-300">
+            <div class="flex w-full items-center justify-center pt-4">
+              <img img-logo src="assets/images/logotipos/gabrielpanta-dark.svg" alt="Logo" class="h-12 w-auto" />
             </div>  
             <app-nav></app-nav>
             <div class="flex flex-row justify-center items-center gap-2">

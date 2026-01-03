@@ -62,7 +62,7 @@ export class AppLocale extends HTMLElement {
   render() {
     this.innerHTML = /* html */ `
       <details id="locale-wrapper" class="dropdown dropdown-top dropdown-center">
-        <summary class="btn m-1">
+        <summary class="btn bg-base-300 m-1">
           <img id="locale-flag" src="assets/images/icons/flag-br.svg" width="24" height="auto" alt="PT" />
         </summary>
         

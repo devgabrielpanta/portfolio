@@ -2,6 +2,15 @@ export class AppPortfolio extends HTMLElement {
   locale = "pt";
   provider;
 
+  translations = {
+    pt: {
+      title: "Portfólio",
+    },
+    en: {
+      title: "Portfolio",
+    },
+  };
+
   /* ---------------- TEXTOS DO PORTFÓLIO ---------------- */
 
   portfolioContent = {
@@ -93,8 +102,8 @@ export class AppPortfolio extends HTMLElement {
                   alt="Gabriel Panta de terno e óculos sorrindo para a câmera"
                   width="400"
                 />
-                <figcaption class="text-center text-lg font-semibold italic">
-                  Gabriel Panta, full-stack web developer
+                <figcaption data-i18n="title" class="text-center text-lg font-semibold italic">
+                  
                 </figcaption>
               </picture>
             </div>
@@ -126,6 +135,13 @@ export class AppPortfolio extends HTMLElement {
   /* ---------------- UPDATE DOS TEXTOS ------------ */
 
   updateTexts() {
+    const dict = this.translations[this.locale];
+
+    this.i18nNodes.forEach((el) => {
+      const key = el.dataset.i18n;
+      el.textContent = dict[key] ?? "";
+    });
+    
     const data = this.portfolioContent[this.locale];
 
     if (!this.portfolioItems) {

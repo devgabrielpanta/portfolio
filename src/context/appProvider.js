@@ -1,11 +1,13 @@
 export class AppProvider extends HTMLElement {
   locale = "pt";
   route = "home";
+  theme = "light";
   subscribers = new Set();
 
   connectedCallback() {
     this.locale = "pt";
     this.route = "home";
+    this.theme = "light";
   }
 
   setLocale(locale) {
@@ -16,6 +18,11 @@ export class AppProvider extends HTMLElement {
   setRoute(route) {
     this.route = route;
     this.dispatchRouteChange();
+  }
+
+  setTheme(theme) {
+    this.theme = theme;
+    this.dispatchThemeChange(theme);
   }
 
   subscribe(component) {
@@ -37,6 +44,12 @@ export class AppProvider extends HTMLElement {
   dispatchRouteChange() {
     this.subscribers.forEach((component) => {
       component.onRouteChange?.(this.route);
+    });
+  }
+
+  dispatchThemeChange(theme) {
+    this.subscribers.forEach((component) => {
+      component.onThemeChange?.(theme);
     });
   }
 }

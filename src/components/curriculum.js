@@ -12,6 +12,7 @@ export class AppCurriculum extends HTMLElement {
       "education.headers.institution": "Instituição",
       "education.headers.location": "Localização",
       "experience.title": "Experiência profissional",
+      title: "Currículo",
     },
     en: {
       "education.title": "Education",
@@ -20,6 +21,7 @@ export class AppCurriculum extends HTMLElement {
       "education.headers.institution": "Institution",
       "education.headers.location": "Location",
       "experience.title": "Professional Experience",
+      title: "Curriculum",
     },
   };
 
@@ -208,8 +210,8 @@ export class AppCurriculum extends HTMLElement {
                 alt="Gabriel Panta "
                 width="400"
               />
-              <figcaption class="text-center text-lg font-semibold italic">
-                Gabriel Panta, full-stack web developer
+              <figcaption data-i18n="title" class="text-center text-lg font-semibold italic">
+                
               </figcaption>
             </picture>
           </div>
