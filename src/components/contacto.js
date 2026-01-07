@@ -71,12 +71,12 @@ export class AppContacto extends HTMLElement {
                     <!-- Contact Info -->
                     <li class="list-row items-center">
                         <div><img class="size-6 rounded-box bg-white" src="assets/images/icons/whatsapp.svg" /></div>
-                        <a href="https://wa.me/351927540803" target="_blank" class="text-xs font-semibold">+351 927 540 803</a>
+                        <a href="https://wa.me/351927927927" target="_blank" class="text-xs font-semibold">+351 927 927 927</a>
                     </li>
 
                     <li class="list-row items-center">
                         <div><img class="size-6 rounded-box bg-white p-1" src="assets/images/icons/email.svg" /></div>
-                        <a href="mailto:gabrielpanta.dev@gmail.com" target="_blank" class="text-xs font-semibold">gabrielpanta.dev@gmail.com</a>
+                        <a href="mailto:gabrielpanta@example.com" target="_blank" class="text-xs font-semibold">gabrielpanta@example.com</a>
                     </li>
                   
                     <!-- Social -->
